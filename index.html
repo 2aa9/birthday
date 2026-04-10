@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday to My Cousins</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Home Page -->
+    <div id="home-page" class="page active">
+        <div class="home-container">
+            <h1>Happy Birthday! 🎉</h1>
+            <p>Choose a cousin to celebrate with:</p>
+            <div class="choices">
+                <button class="cousin-btn asail-btn" onclick="goToPage('asail')">
+                    <span class="emoji">😢</span>
+                    <span class="name">Asail</span>
+                    <span class="theme">Crybaby Theme</span>
+                </button>
+                <button class="cousin-btn mimi-btn" onclick="goToPage('mimi')">
+                    <span class="emoji">🌊</span>
+                    <span class="name">Mimi</span>
+                    <span class="theme">Ocean Theme</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Asail Page - Crybaby Theme -->
+    <div id="asail-page" class="page">
+        <div class="content-container asail-theme">
+            <button class="back-btn" onclick="goToPage('home')">← Back</button>
+            
+            <div class="header">
+                <h1>💜 Happy Birthday Asail! 💜</h1>
+                <p class="subtitle">Crybaby Celebration</p>
+            </div>
+
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <video id="asail-video" width="100%" controls>
+                        <source src="" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p class="video-note">📍 Add your birthday video URL in the JavaScript settings</p>
+                </div>
+            </div>
+
+            <div class="message-box asail-message">
+                <p>You're such a special cousin! Hope your birthday is filled with happiness and joy! 💕</p>
+            </div>
+
+            <div class="music-section">
+                <h3>🎵 Birthday Song</h3>
+                <audio id="asail-audio" controls>
+                    <source src="" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <p class="note">📍 Add your birthday song URL in the JavaScript settings</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mimi Page - Ocean Theme -->
+    <div id="mimi-page" class="page">
+        <div class="content-container mimi-theme">
+            <button class="back-btn" onclick="goToPage('home')">← Back</button>
+            
+            <div class="header">
+                <h1>🌊 Happy Birthday Mimi! 🌊</h1>
+                <p class="subtitle">Ocean Adventure</p>
+            </div>
+
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <video id="mimi-video" width="100%" controls autoplay>
+                        <source src="" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p class="video-note">📍 Add your birthday video URL in the JavaScript settings</p>
+                </div>
+            </div>
+
+            <div class="message-box mimi-message">
+                <p>You bring so much fun and light to our family! Have the most amazing birthday! 🐚✨</p>
+            </div>
+
+            <div class="music-section">
+                <h3>🎵 Birthday Song</h3>
+                <audio id="mimi-audio" controls>
+                    <source src="" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <p class="note">📍 Add your birthday song URL in the JavaScript settings</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
