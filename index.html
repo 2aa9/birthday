@@ -1,102 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday to My Cousins</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Birthday Experience 🎂</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+/* BACKGROUNDS */
+.home {
+    background: linear-gradient(135deg, #fff5b7, #ffd6e0);
+    height: 100vh;
+}
+
+.asailTheme {
+    background: linear-gradient(135deg, #f8cdda, #89c2ff);
+}
+
+.mimiTheme {
+    background: linear-gradient(135deg, #0077b6, #00b4d8);
+}
+
+/* TITLE */
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 60px;
+    margin-top: 80px;
+}
+
+/* CARDS */
+.card-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 60px;
+}
+
+.card {
+    width: 260px;
+    padding: 30px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 0.4s;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.05);
+}
+
+/* THEMES */
+.asail {
+    background: linear-gradient(135deg, #f3c6e3, #cfe8ff);
+}
+
+.mimi {
+    background: linear-gradient(135deg, #90e0ef, #0077b6);
+    color: white;
+}
+
+/* VIDEO */
+video {
+    width: 80%;
+    margin-top: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+
+/* FLOATING ANIMATION */
+.floating {
+    position: absolute;
+    font-size: 20px;
+    animation: float 6s infinite linear;
+}
+
+@keyframes float {
+    0% {transform: translateY(0);}
+    100% {transform: translateY(-100vh);}
+}
+
+/* MUSIC BUTTON */
+.music-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: white;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+}
+</style>
 </head>
-<body>
-    <!-- Home Page -->
-    <div id="home-page" class="page active">
-        <div class="home-container">
-            <h1>Happy Birthday! 🎉</h1>
-            <p>Choose a cousin to celebrate with:</p>
-            <div class="choices">
-                <button class="cousin-btn asail-btn" onclick="goToPage('asail')">
-                    <span class="emoji">😢</span>
-                    <span class="name">Asail</span>
-                    <span class="theme">Crybaby Theme</span>
-                </button>
-                <button class="cousin-btn mimi-btn" onclick="goToPage('mimi')">
-                    <span class="emoji">🌊</span>
-                    <span class="name">Mimi</span>
-                    <span class="theme">Ocean Theme</span>
-                </button>
-            </div>
+
+<body class="home">
+
+<div id="musicBtn" class="music-btn" onclick="toggleMusic()">🎵</div>
+
+<audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mp3">
+</audio>
+
+<div id="main">
+    <h1>Happy Birthday 🎂</h1>
+    <p>Choose your experience ✨</p>
+
+    <div class="card-container">
+        <div class="card asail" onclick="openAsail()">
+            <h2>Asail 🎀</h2>
+            <p>Crybaby Theme</p>
+        </div>
+
+        <div class="card mimi" onclick="openMimi()">
+            <h2>Mimi 🌊</h2>
+            <p>Ocean Theme</p>
         </div>
     </div>
+</div>
 
-    <!-- Asail Page - Crybaby Theme -->
-    <div id="asail-page" class="page">
-        <div class="content-container asail-theme">
-            <button class="back-btn" onclick="goToPage('home')">← Back</button>
-            
-            <div class="header">
-                <h1>💜 Happy Birthday Asail! 💜</h1>
-                <p class="subtitle">Crybaby Celebration</p>
-            </div>
+<div id="content"></div>
 
-            <div class="video-container">
-                <div class="video-wrapper">
-                    <video id="asail-video" width="100%" controls>
-                        <source src="" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <p class="video-note">📍 Add your birthday video URL in the JavaScript settings</p>
-                </div>
-            </div>
+<script>
+let musicPlaying = false;
 
-            <div class="message-box asail-message">
-                <p>You're such a special cousin! Hope your birthday is filled with happiness and joy! 💕</p>
-            </div>
+function toggleMusic() {
+    const music = document.getElementById("bgMusic");
+    if (musicPlaying) {
+        music.pause();
+    } else {
+        music.play();
+    }
+    musicPlaying = !musicPlaying;
+}
 
-            <div class="music-section">
-                <h3>🎵 Birthday Song</h3>
-                <audio id="asail-audio" controls>
-                    <source src="" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
-                <p class="note">📍 Add your birthday song URL in the JavaScript settings</p>
-            </div>
-        </div>
-    </div>
+/* ASAIL PAGE */
+function openAsail() {
+    document.body.className = "asailTheme";
+    document.getElementById("main").style.display = "none";
 
-    <!-- Mimi Page - Ocean Theme -->
-    <div id="mimi-page" class="page">
-        <div class="content-container mimi-theme">
-            <button class="back-btn" onclick="goToPage('home')">← Back</button>
-            
-            <div class="header">
-                <h1>🌊 Happy Birthday Mimi! 🌊</h1>
-                <p class="subtitle">Ocean Adventure</p>
-            </div>
+    document.getElementById("content").innerHTML = `
+        <h1 style="color:#d63384;">Asail 🎀</h1>
+        <p>Happy Birthday ✨</p>
+        <video autoplay controls>
+            <source src="asail.mp4" type="video/mp4">
+        </video>
+    `;
 
-            <div class="video-container">
-                <div class="video-wrapper">
-                    <video id="mimi-video" width="100%" controls autoplay>
-                        <source src="" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <p class="video-note">📍 Add your birthday video URL in the JavaScript settings</p>
-                </div>
-            </div>
+    spawnElements("💧 🌸 ⭐");
+}
 
-            <div class="message-box mimi-message">
-                <p>You bring so much fun and light to our family! Have the most amazing birthday! 🐚✨</p>
-            </div>
+/* MIMI PAGE */
+function openMimi() {
+    document.body.className = "mimiTheme";
+    document.getElementById("main").style.display = "none";
 
-            <div class="music-section">
-                <h3>🎵 Birthday Song</h3>
-                <audio id="mimi-audio" controls>
-                    <source src="" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
-                <p class="note">📍 Add your birthday song URL in the JavaScript settings</p>
-            </div>
-        </div>
-    </div>
+    document.getElementById("content").innerHTML = `
+        <h1>Mimi 🌊</h1>
+        <p>Happy Birthday ✨</p>
+        <video autoplay controls>
+            <source src="mimi.mp4" type="video/mp4">
+        </video>
+    `;
 
-    <script src="script.js"></script>
+    spawnElements("🌊 🐚 🐠 ⭐");
+}
+
+/* FLOATING EFFECT */
+function spawnElements(symbols) {
+    setInterval(() => {
+        const el = document.createElement("div");
+        el.className = "floating";
+        el.style.left = Math.random() * 100 + "vw";
+        el.innerText = symbols[Math.floor(Math.random()*symbols.length)];
+        document.body.appendChild(el);
+
+        setTimeout(() => el.remove(), 6000);
+    }, 500);
+}
+</script>
+
 </body>
 </html>
