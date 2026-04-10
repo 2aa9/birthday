@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Birthday Experience 🎂</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+/* BACKGROUNDS */
+.home {
+    background: linear-gradient(135deg, #fff5b7, #ffd6e0);
+    height: 100vh;
+}
+
+.asailTheme {
+    background: linear-gradient(135deg, #f8cdda, #89c2ff);
+}
+
+.mimiTheme {
+    background: linear-gradient(135deg, #0077b6, #00b4d8);
+}
+
+/* TITLE */
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 60px;
+    margin-top: 80px;
+}
+
+/* CARDS */
+.card-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 60px;
+}
+
+.card {
+    width: 260px;
+    padding: 30px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 0.4s;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.05);
+}
+
+/* THEMES */
+.asail {
+    background: linear-gradient(135deg, #f3c6e3, #cfe8ff);
+}
+
+.mimi {
+    background: linear-gradient(135deg, #90e0ef, #0077b6);
+    color: white;
+}
+
+/* VIDEO */
+video {
+    width: 80%;
+    margin-top: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+
+/* FLOATING ANIMATION */
+.floating {
+    position: absolute;
+    font-size: 20px;
+    animation: float 6s infinite linear;
+}
+
+@keyframes float {
+    0% {transform: translateY(0);}
+    100% {transform: translateY(-100vh);}
+}
+
+/* MUSIC BUTTON */
+.music-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: white;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body class="home">
+
+<div id="musicBtn" class="music-btn" onclick="toggleMusic()">🎵</div>
+
+<audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mp3">
+</audio>
+
+<div id="main">
+    <h1>Happy Birthday 🎂</h1>
+    <p>Choose your experience ✨</p>
+
+    <div class="card-container">
+        <div class="card asail" onclick="openAsail()">
+            <h2>Asail 🎀</h2>
+            <p>Crybaby Theme</p>
+        </div>
+
+        <div class="card mimi" onclick="openMimi()">
+            <h2>Mimi 🌊</h2>
+            <p>Ocean Theme</p>
+        </div>
+    </div>
+</div>
+
+<div id="content"></div>
+
+<script>
+let musicPlaying = false;
+
+function toggleMusic() {
+    const music = document.getElementById("bgMusic");
+    if (musicPlaying) {
+        music.pause();
+    } else {
+        music.play();
+    }
+    musicPlaying = !musicPlaying;
+}
+
+/* ASAIL PAGE */
+function openAsail() {
+    document.body.className = "asailTheme";
+    document.getElementById("main").style.display = "none";
+
+    document.getElementById("content").innerHTML = `
+        <h1 style="color:#d63384;">Asail 🎀</h1>
+        <p>Happy Birthday ✨</p>
+        <video autoplay controls>
+            <source src="asail.mp4" type="video/mp4">
+        </video>
+    `;
+
+    spawnElements("💧 🌸 ⭐");
+}
+
+/* MIMI PAGE */
+function openMimi() {
+    document.body.className = "mimiTheme";
+    document.getElementById("main").style.display = "none";
+
+    document.getElementById("content").innerHTML = `
+        <h1>Mimi 🌊</h1>
+        <p>Happy Birthday ✨</p>
+        <video autoplay controls>
+            <source src="mimi.mp4" type="video/mp4">
+        </video>
+    `;
+
+    spawnElements("🌊 🐚 🐠 ⭐");
+}
+
+/* FLOATING EFFECT */
+function spawnElements(symbols) {
+    setInterval(() => {
+        const el = document.createElement("div");
+        el.className = "floating";
+        el.style.left = Math.random() * 100 + "vw";
+        el.innerText = symbols[Math.floor(Math.random()*symbols.length)];
+        document.body.appendChild(el);
+
+        setTimeout(() => el.remove(), 6000);
+    }, 500);
+}
+</script>
+
+</body>
+</html>
